@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+  <link href="{% static "css/contact.css" %}" rel="stylesheet"/>
+  {% include 'breadcrumb.html' %}
+
+  <div class="contact">
+    <div class="container">
+      <div class="row">
+
+        <div class="col-xs-12  col-md-6 col-md-offset-3">
+          {% if messages %}
+            {% for message in messages %}
+              <p{% if message.tags %} class="alert alert-success"{% endif %}>{{ message }}</p>
+            {% endfor %}
+          {% endif %}
+        </div>
+
+        <form method='POST' action='' class="col-md-5 col-xs-12">
+          {% csrf_token %}
+          <input type="submit" value="Submit" class="submit">
+        </form>
+
+        <div class="row col-md-6 col-md-offset-1 contact_details">
+
+          <h5>Address :</h5>
+          <i class="address"></i>
+          <div class="contact_address">
+            in the middle of nowhere 42<br><br>
+          </div>
+
+          <h5>Phone :</h5>
+          <i class="phone"></i>
+          <div class="contact_address">
+            12-34-567<br>
+            56-78-963<br><br>
+          </div>
+
+          <h5>Email :</h5>
+          <i class="mail"></i>
+          <div class="contact_mail">
+            info-brainsteam@gmail.com
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
