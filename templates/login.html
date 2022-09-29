@@ -5,7 +5,6 @@
 
 {% block content %}
     <link href="{% static 'css/registration.css' %}" rel="stylesheet"/>
-    <!-- Using this because of django redux registration which contains built-in validation. -->
     {% if request.user.is_authenticated %}
         <script>
             window.location.replace("http://127.0.0.1:8000");
@@ -14,21 +13,33 @@
         <div class='row login'>
             <div class='col-sm-4 col-sm-offset-4'>
                 <h1>Login</h1>
+                </br>
                 <form method="post" action=".">
                     {% csrf_token %}
 
-                    <input class='btn btn-block btn-primary' type="submit" value="{% trans 'Submit' %}"/>
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="username">Username</label>
+                        <input type="username" id="username" name="username" class="form-control"/>
+                    </div>
+
+                    </br>
+
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="password">Password</label>
+                        <input type="password" id="password" name="password" class="form-control"/>
+                    </div>
+
+                    </br>
+
+                    <button type="submit" style="background-color: dodgerblue"
+                            class="btn btn-block btn-primary">Sign in
+                    </button>
                     <input type="hidden" name="next" value="{{ next }}"/>
+                    </br>
+                    <p class="text-center">Don't have an account? <a href="/register">Create an account</a>.</p>
                 </form>
             </div>
         </div>
         <hr/>
-        <div class='row form-opt'>
-            <div class='col-sm-4 col-sm-offset-4 text-align-center'>
-                <p>{% trans "Forgot password" %}? <a href="{% url 'auth_password_reset' %}">{% trans "Reset it" %}</a>!
-                </p>
-                <p>{% trans "Not member" %}? <a href="{% url 'registration_register' %}">{% trans "Register" %}</a>!</p>
-            </div>
-        </div>
     {% endif %}
 {% endblock %}

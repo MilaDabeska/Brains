@@ -13,7 +13,7 @@ from django.shortcuts import render, redirect
 from itertools import chain
 from django.http import Http404
 
-from users.forms import AddUser, EditUser, Contact
+from users.forms import AddUser, EditUser, Contact, NewUserForm
 
 
 def home(request):
@@ -207,6 +207,19 @@ def student_course(request, course_name, slug=None):
 
     else:
         raise Http404
+
+
+def register_request(request):
+    if request.method == "POST":
+        form = NewUserForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            messages.success(request, "Registration successful.")
+            return redirect("/")
+        messages.error(request, "Unsuccessful registration. Invalid information.")
+    form = NewUserForm()
+    return render(request, "register.html", {"register_form": form})
 
 
 def loginPage(request):

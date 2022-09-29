@@ -18,9 +18,7 @@ from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
 from users import views as user_views
-from users.views import loginPage, logoutPage
-from django.contrib.auth import login, logout
-# from registration.backends.default.views import RegistrationView
+from users.views import loginPage, logoutPage, register_request
 
 urlpatterns = [
     path('', user_views.home, name='home'),
@@ -32,6 +30,6 @@ urlpatterns = [
     path('forum/', include('forum.urls')),
     path('profile/', include('users.urls')),
     path('login/', loginPage, name='login'),
-    path('logout/', logout, name='logout'),
-    # path('accounts/', include('django_registration.backends.default.urls')),
+    path('logout/', logoutPage, name='logout'),
+    path('register/', register_request, name='register'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+    <!--Register-->
+    <div class="container py-5">
+        <h1>Register</h1>
+        </br>
+        <form method="POST">
+            {% csrf_token %}
+
+            <div class="form-outline mb-4">
+                <label class="form-label" for="username">Username</label>
+                <input type="username" id="username" name="username" class="form-control"/>
+            </div>
+
+            </br>
+
+            <div class="form-outline mb-4">
+                <label class="form-label" for="password">Password</label>
+                <input type="password" id="password" name="password" class="form-control"/>
+            </div>
+
+            </br>
+
+            <button class="btn btn-primary" type="submit">Register</button>
+        </form>
+        <p class="text-center">If you already have an account, <a href="/login">login</a> instead.</p>
+    </div>
+
+{% endblock %}
