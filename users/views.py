@@ -219,7 +219,7 @@ def register_request(request):
             return redirect('/login')
 
     form = NewUserForm()
-    return render(request, "register.html", {"register_form": form})
+    return render(request, "register.html")
 
 
 def loginPage(request):
