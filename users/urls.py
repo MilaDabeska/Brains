@@ -3,7 +3,7 @@ from django.urls import path
 
 from eLearning import settings
 from . import views as user_views
-from .views import loginPage, logoutPage
+from .views import register_request
 
 urlpatterns = [
     path('', user_views.profile, name='profile'),

@@ -216,18 +216,18 @@ def register_request(request):
             user = form.save()
             login(request, user)
             messages.success(request, "Registration successful.")
-            return redirect("/")
-        messages.error(request, "Unsuccessful registration. Invalid information.")
+            return redirect('/login')
+
     form = NewUserForm()
     return render(request, "register.html", {"register_form": form})
 
 
 def loginPage(request):
     if request.method == 'POST':
-        username = request.POST['username']
+        email = request.POST['email']
         password = request.POST['password']
 
-        user = authenticate(request, username=username, password=password)
+        user = authenticate(request, username=email, password=password)
 
         if user is not None:
             loginPage(request)

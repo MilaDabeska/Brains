@@ -4,7 +4,7 @@
 
 
 {% block content %}
-    <link href="{% static 'css/registration.css' %}" rel="stylesheet"/>
+
     {% if request.user.is_authenticated %}
         <script>
             window.location.replace("http://127.0.0.1:8000");
@@ -18,8 +18,8 @@
                     {% csrf_token %}
 
                     <div class="form-outline mb-4">
-                        <label class="form-label" for="username">Username</label>
-                        <input type="username" id="username" name="username" class="form-control"/>
+                        <label class="form-label" for="email">Email</label>
+                        <input type="email" id="email" name="email" class="form-control"/>
                     </div>
 
                     </br>
